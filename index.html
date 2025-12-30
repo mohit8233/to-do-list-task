@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task-list</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: hsl(229, 88%, 6%);
+        }
+
+        .main-container {
+            width: 600px;
+            color: #dc9898;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+        }
+        input::placeholder{
+           color: #de3b3b;
+        }
+
+        .input-btn {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #9ca3af;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        #addBtn {
+            padding: 12px 18px;
+            border: none;
+            background: #13e039;
+            color: white;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .forshow {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .task-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+        }
+
+        .task-box span {
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .deleteBtn {
+            padding: 5px 12px;
+            border: none;
+            background: #b91c1c;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="main-container">
+    <h1>MY TO-DO LIST</h1>
+    <div class="input-btn">
+        <input type="text" class="input" placeholder="write task here">
+        <button id="addBtn">add</button>
+    </div>
+
+    <div class="forshow"></div>
+</div>
+
+<script>
+    let taskInput = document.querySelector(".input");
+    let addBtn = document.querySelector("#addBtn");
+    let taskArea = document.querySelector(".forshow");
+
+    addBtn.addEventListener("click", function () {
+        let taskValue = taskInput.value;
+
+        if (taskValue === "") {
+            alert(" Pls enter task");
+            return;
+        }
+
+        taskArea.innerHTML += `
+            <div class="task-box">
+                <span>${taskValue}</span>
+                <button class="deleteBtn" onclick="this.parentElement.remove()">remove</button>
+            </div>
+        `;
+
+        taskInput.value = "";
+    });
+</script>
+
+</body>
+</html>

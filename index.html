@@ -22,7 +22,7 @@
         }
 
         .main-container {
-            width: 600px;
+            width: 400px;
             color: #dc9898;
             text-align: center;
             padding: 20px;
@@ -30,8 +30,11 @@
             border-radius: 10px;
             border: 1px solid #d1d5db;
         }
+        h1{
+            margin-bottom: 20px;
+        }
         input::placeholder{
-           color: #de3b3b;
+           color: #b0a7a7;
         }
 
         .input-btn {
@@ -87,6 +90,15 @@
             border-radius: 5px;
             font-size: 13px;
         }
+        .editBtn{
+            padding: 5px 12px;
+            border: none;
+            background: #3f36c9;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -118,12 +130,28 @@
         taskArea.innerHTML += `
             <div class="task-box">
                 <span>${taskValue}</span>
-                <button class="deleteBtn" onclick="this.parentElement.remove()">remove</button>
+                <div>
+                    <button class="deleteBtn" onclick="this.parentElement.remove()">remove</button>
+                <button class="editBtn" onclick="editTask(this)">Edit</button>
+                    </div>
+                
             </div>
         `;
 
         taskInput.value = "";
     });
+
+
+
+
+function editTask(button) {
+    let taskBox = button.closest(".task-box");   
+    let taskText = taskBox.querySelector("span").innerText;
+
+    taskInput.value = taskText; 
+    taskBox.remove();             
+}
+
 </script>
 
 </body>

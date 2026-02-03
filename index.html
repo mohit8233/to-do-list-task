@@ -120,10 +120,10 @@
     let taskArea = document.querySelector(".forshow");
 
     addBtn.addEventListener("click", function () {
-        let taskValue = taskInput.value;
+        let taskValue = taskInput.value.trim();
 
         if (taskValue === "") {
-            alert(" Pls enter task");
+            alert("Pls enter task");
             return;
         }
 
@@ -131,28 +131,29 @@
             <div class="task-box">
                 <span>${taskValue}</span>
                 <div>
-                    <button class="deleteBtn" onclick="this.parentElement.remove()">remove</button>
-                <button class="editBtn" onclick="editTask(this)">Edit</button>
-                    </div>
-                
+                    <button class="deleteBtn" onclick="deleteTask(this)">remove</button>
+                    <button class="editBtn" onclick="editTask(this)">Edit</button>
+                </div>
             </div>
         `;
 
         taskInput.value = "";
     });
 
+    function editTask(button) {
+        let taskBox = button.closest(".task-box");   
+        let taskText = taskBox.querySelector("span").innerText;
 
+        taskInput.value = taskText; 
+        taskBox.remove();             
+    }
 
-
-function editTask(button) {
-    let taskBox = button.closest(".task-box");   
-    let taskText = taskBox.querySelector("span").innerText;
-
-    taskInput.value = taskText; 
-    taskBox.remove();             
-}
-
+    function deleteTask(button) {
+        let taskBox = button.closest(".task-box");
+        taskBox.remove();
+    }
 </script>
+
 
 </body>
 </html>
